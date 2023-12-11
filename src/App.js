@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Footer from './Components/Footer/Footer';
+import Home from './Components/Home/Home';
+import Main from './Components/Main/Main';
+import Navbar from './Components/Navbar/Navbar'
 
 function App() {
+  const [active, setActive] = useState("navBar");
+
+  const showNav = () => {
+    setActive("navBar activeNavbar");
+  };
+
+  const closeNav = () => {
+    setActive("navBar");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Navbar active={active} setActive={setActive} showNav={showNav} closeNav={closeNav}/>
+      <Home active={active} />
+      <Main />
+      <Footer />
+    </>
+  )
 }
 
 export default App;
